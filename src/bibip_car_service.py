@@ -9,7 +9,7 @@ class CarService:
         self.root_directory_path = root_directory_path
 
 # Создаем доп. методы: 
-    #  добавление строки в файл/возврат ее позиции 
+    #  Добавление строки в файл/возврат ее позиции 
     def _append_to_file(self, filename: str, data: str) -> int:
         filepath = os.path.join(self.root_directory_path, filename) #формирование пути к файлу
         with open(filepath, 'a') as f: # открытие в режиме 'a'
@@ -23,7 +23,7 @@ class CarService:
         with open(index_file, 'a') as f: #формирование пути к файлу
             f.write(f"{key}:{position}\n") # запись в файл
 
-    #Чтение индек. файла и преобразование его содержимого в словарь
+    # Чтение индек. файла и преобразование его содержимого в словарь
     def _read_index_to_dict(self, index_filename: str) -> dict[str, int]:
         index_path = os.path.join(self.root_directory_path, index_filename)
         if not os.path.exists(index_path): # проверка, есть ли файл
@@ -39,14 +39,14 @@ class CarService:
                 index_dict[key] = offset #добавление в словарь
         return index_dict
 
-    #Записываем содержимое словаря в файл
+    # Записываем содержимое словаря в файл
     def _write_index(self, index_filename: str, index_dict: dict[str, int]) -> None:
         index_path = os.path.join(self.root_directory_path, index_filename)
         with open(index_path, 'w') as f:
             for key, offset in index_dict.items():
                 f.write(f"{key}:{offset}\n")
 
-    #Читаем все модели из файла 'models.txt'(возвращаем словарь)
+    # Читаем все модели из файла 'models.txt'(возвращаем словарь)
     def _read_all_models(self) -> dict[int, Model]: 
         models_path = os.path.join(self.root_directory_path, 'models.txt')
         models = {}
@@ -62,7 +62,7 @@ class CarService:
                     continue
         return models
     
-    #Аналогичен _read_all_models, но работает с автомобилями.
+    # Аналогичен _read_all_models, но работает с автомобилями.
     def _read_all_cars(self) -> dict[str, Car]: 
         cars_path = os.path.join(self.root_directory_path, 'cars.txt') 
         cars = {} 
